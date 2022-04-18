@@ -1,5 +1,5 @@
 import '../constants.dart';
-import '../screens/Contacts.dart';
+import '../screens/CovidStat.dart';
 import '../screens/Github_users.dart';
 import '../screens/Home.dart';
 import '../screens/News.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 
       routes: {
         "/": (context) => Home(),
-        "/contacts": (context) => Contacts(),
+        "/contacts": (context) => CovidStats(),
         "/github": (context) => GitHubUsers(),
         "/news": (context) => News(),
       },
