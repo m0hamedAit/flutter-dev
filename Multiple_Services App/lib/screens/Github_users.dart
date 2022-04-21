@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:multiple_services/constants.dart';
@@ -24,10 +23,11 @@ _launchURLBrowser(String url) async {
 class _GitHubUsersState extends State<GitHubUsers> {
   // ignore: prefer_typing_uninitialized_variables
   var users;
+
   TextEditingController textController = TextEditingController();
 
   void searchGithubUser(userKey){
-    String url="https://api.github.com/search/users?q=${userKey}&per_page=10&page=0";
+    String url="https://api.github.com/search/users?q=${userKey}&per_page=50&page=0";
     http.get(Uri.parse(url))
         .then((response) {
       setState(() {

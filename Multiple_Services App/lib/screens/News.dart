@@ -104,7 +104,7 @@ void addBodyElement(news) {
                 url!=null
                     ? _launchURLBrowser(url)
                     :Fluttertoast.showToast(
-                    msg: "No url",
+                    msg: "Can't reach Article's page",
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,

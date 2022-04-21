@@ -1,108 +1,130 @@
-
 import 'package:flutter/material.dart';
+import 'package:multiple_services/widgets/App_Bar.dart';
 
 import '../constants.dart';
 import '../widgets/App_drawer.dart';
 
-class Home extends StatelessWidget{
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-        drawer: AppDrawer(),
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          elevation: 0,// ?
-
-        ),
-        body:Column(
-          children: <Widget>[
-            SizedBox(
-              height: size.height * 0.2,  // get 0.2 of screen height
-              child:Stack(
-                children:<Widget>[
-                  Container(
-                    height: size.height * 0.2 - 20,
-                    decoration: const BoxDecoration(
+      drawer: AppDrawer(),
+      appBar: const AppBarr(""),
+      body: Column(
+        children: <Widget>[
+          SizedBox(
+              height: size.height * 0.2, // get 0.2 of screen height
+              child: Stack(children: <Widget>[
+                Container(
+                  height: size.height * 0.2 - 20,
+                  decoration: const BoxDecoration(
                       color: primaryColor,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(50),
                         bottomRight: Radius.circular(50),
-                      )
-                    ),
+                      )),
+                ),
+              ])),
+          GridView.count(
+            crossAxisCount: 2,
+            children: [
+              InkWell(
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(20))
                   ),
 
-                Container(
-                    height:40,
-                    margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                    child: Stack(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: 'Enter Keyword',
-                              labelStyle: const TextStyle(
-                                color: Colors.white,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(width: 1, color: Colors.white),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(width: 1, color: secondaryColor),
-                                borderRadius: BorderRadius.circular(15),
-                              )),
-                        )
-
-                      ],
-                    )
-
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                    child:InkWell( // make container clickable
-                      child: Container(
-                          padding: const EdgeInsets.all(9.0),
-                          margin: const EdgeInsets.symmetric(horizontal: 100),
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                offset: const Offset(0,10),
-                                blurRadius: 50,
-                                color: primaryColor.withOpacity(0.3),
-                              ),
-                            ]
-                          ),
-                        child: const Text(
-                            'Search',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                        ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.newspaper,
+                        color: Colors.white,
                       ),
-                      // ignore: avoid_print
-                      onTap: ()=> print("touched"),
+                      Text("News", style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ),
+                onTap: (){
+                  Navigator.of(context).pushNamed("/news");
+                },
+              ),
 
-                    )
-                    // TODO : add search icon
-                  )
+              InkWell(
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(20))
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.supervised_user_circle,
+                        color: Colors.white,
+                      ),
+                      Text("Github Users",
+                          style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ),
+                onTap: (){
+                  Navigator.of(context).pushNamed("/github");
+                },
+              ),
 
-                ]
-              )
+              InkWell(
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(20))
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.airplay_rounded,
+                        color: Colors.white,
+                      ),
+                      Text("Covid 19", style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ),
+                onTap: (){
+                  Navigator.of(context).pushNamed("/covid");
+                },
+              ),
 
+              InkWell(
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(20))
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.error,
+                        color: Colors.white,
+                      ),
+                      Text("About", style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                ),
 
-            )
-          ]
-        )
+              ),
+            ],
+            padding: const EdgeInsets.all(10),
+            shrinkWrap: true,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          )
+        ],
+      ),
     );
   }
-
 }
