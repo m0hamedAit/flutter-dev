@@ -1,16 +1,40 @@
-# app_apis
+# Multi-Services App
+An application built using flutter, that provides services like news, searching github users, checking covid-19 stats, ...
 
-A new Flutter application.
 
-## Getting Started
+***
 
-This project is a starting point for a Flutter application.
+## screenshots
 
-A few resources to get you started if this is your first Flutter project:
+#### Home 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+| | |
+|:-------------------------:|:-------------------------:|
+<img src="images\home1.jpg" alt="home"/> | <img src="images\home2.jpg" alt="home"/>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### News 
+
+| | |
+|:-------------------------:|:-------------------------:|
+<img src="images\news1.jpg" alt="news"/> | <img src="images\news2.jpg" alt="news"/>
+<img src="images\news3.jpg" alt="news"/> | 
+
+#### Github 
+
+| | |
+|:-------------------------:|:-------------------------:|
+<img src="images\github.jpg" alt="github"/> | <img src="images\github2.jpg" alt="github"/>
+
+####  Covid-19
+
+<p align="center">
+<img src="images\covid19.jpg" alt="github" width="300"/> 
+</p>
+
+***
+
+## Used APIs :
+
+  - **[News API](https://github.com/News-API-gh)**
+  - **[Github API](https://api.github.com/search/users)**
+  - **[Covid API](https://github.com/M-Media-Group/Covid-19-API)**
