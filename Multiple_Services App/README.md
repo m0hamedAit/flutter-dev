@@ -16,7 +16,7 @@ An application built using flutter, that provides services like news, searching 
 
 | | |
 |:-------------------------:|:-------------------------:|
-<img src="images\news1.jpg" alt="news"/> | <img src="images\news2.jpg" alt="news" width="300"/>
+<img src="images\news1.jpg" alt="news" width="300"/> | <img src="images\news2.jpg" alt="news" width="300"/>
 <img src="images\news3.jpg" alt="news" width="300"/> | 
 
 #### Github 
