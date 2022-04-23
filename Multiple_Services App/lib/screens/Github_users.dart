@@ -3,30 +3,24 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:multiple_services/constants.dart';
+import 'package:multiple_services/providers/ListGithubState.dart';
 import 'package:multiple_services/widgets/App_Bar.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class GitHubUsers extends StatefulWidget {
-  @override
-  State<GitHubUsers> createState() => _GitHubUsersState();
-}
-
-_launchURLBrowser(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url, forceSafariVC: true, forceWebView: true);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
-
-
-class _GitHubUsersState extends State<GitHubUsers> {
-  // ignore: prefer_typing_uninitialized_variables
-  var users;
+class GitHubUsers extends StatelessWidget {
 
   TextEditingController textController = TextEditingController();
 
-  void searchGithubUser(userKey){
+  _launchURLBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: true, forceWebView: true);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  /*void searchGithubUser(userKey){
     String url="https://api.github.com/search/users?q=${userKey}&per_page=50&page=0";
     http.get(Uri.parse(url))
         .then((response) {
@@ -36,7 +30,7 @@ class _GitHubUsersState extends State<GitHubUsers> {
     }).catchError((onError){
       print(onError);
     });
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -118,36 +112,38 @@ class _GitHubUsersState extends State<GitHubUsers> {
                         ),
                         // ignore: avoid_print
                         onTap:() {
-                          setState(() {
-                            searchGithubUser(textController.text);
-                          });
-                        }
+                           Provider.of<ListGithubState>(context,listen: false)
+                                  .searchGithubUser(textController.text);
+                          }
 
                     )
-                  // TODO : add search icon
+
                 )
 
               ]
           )
-
-
       ),
 
           Expanded(
-              child: ListView.builder(
-
-                itemCount:users==null||users["items"]==null?0: users["items"].length,
+            child: Consumer<ListGithubState>(
+            builder: (context, listUsers, child) {
+              return ListView.builder(
+                itemCount: listUsers.users==null || listUsers.users["items"] == null ? 0 : listUsers
+                    .users["items"].length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(users["items"][index]["avatar_url"]),
+                      backgroundImage: NetworkImage(
+                          listUsers.users["items"][index]["avatar_url"]),
                     ),
-                    title: Text(users["items"][index]["login"]),
-                    onTap: (){
-                      _launchURLBrowser(users["items"][index]["html_url"]);
+                    title: Text(listUsers.users["items"][index]["login"]),
+                    onTap: () {
+                      _launchURLBrowser(
+                          listUsers.users["items"][index]["html_url"]);
                     },
                   );
-                },),
+                },);
+            })
             ),
 
           ],

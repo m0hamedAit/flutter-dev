@@ -1,3 +1,8 @@
+import 'package:multiple_services/providers/ListArticlesState.dart';
+import 'package:multiple_services/providers/ListCountriesState.dart';
+import 'package:multiple_services/providers/ListGithubState.dart';
+import 'package:provider/provider.dart';
+
 import '../constants.dart';
 import '../screens/CovidStats.dart';
 import '../screens/Github_users.dart';
@@ -12,7 +17,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+        providers:[
+          ChangeNotifierProvider(create: (context)=>ListArticlesState(), child: MyApp()),
+          ChangeNotifierProvider(create: (context)=>ListGithubState(), child: MyApp()),
+          ChangeNotifierProvider(create: (context)=>ListCountriesState(), child: MyApp()),
+    ],
+
+      child:MaterialApp(
       debugShowCheckedModeBanner: false,  // remove debug banner
       title: "APIs app",
       theme: ThemeData(
@@ -32,6 +44,7 @@ class MyApp extends StatelessWidget {
         "/news": (context) => News(),
       },
 
+    )
     );
   }
 }
